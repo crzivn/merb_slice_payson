@@ -1,0 +1,76 @@
+MerbSlicePayson
+===============
+
+A slice for the Merb framework.
+
+------------------------------------------------------------------------------
+   
+
+To see all available tasks for MerbSlicePayson run:
+
+rake -T slices:merb_slice_payson
+
+------------------------------------------------------------------------------
+
+Instructions for installation:
+
+file: config/init.rb
+
+# add the slice as a regular dependency
+
+dependency 'merb_slice_payson'
+
+# if needed, configure which slices to load and in which order
+
+Merb::Plugins.config[:merb_slices] = { :queue => ["MerbSlicePayson", ...] }
+
+# optionally configure the plugins in a before_app_loads callback
+
+Merb::BootLoader.before_app_loads do
+  
+  Merb::Slices::config[:merb_slice_payson][:option] = value
+  
+end
+
+file: config/router.rb
+
+# example: /merb_slice_payson/:controller/:action/:id
+
+add_slice(:MerbSlicePayson)
+
+# example: /:lang/:controller/:action/:id
+
+add_slice(:MerbSlicePayson, :path => ':lang')
+
+# example: /:controller/:action/:id
+
+slice(:MerbSlicePayson)
+
+Normally you should also run the following rake task:
+
+rake slices:merb_slice_payson:install
+
+------------------------------------------------------------------------------
+
+You can put your application-level overrides in:
+
+host-app/slices/merb_slice_payson/app - controllers, models, views ...
+
+Templates are located in this order:
+
+1. host-app/slices/merb_slice_payson/app/views/*
+2. gems/merb_slice_payson/app/views/*
+3. host-app/app/views/*
+
+You can use the host application's layout by configuring the
+merb_slice_payson slice in a before_app_loads block:
+
+Merb::Slices.config[:merb_slice_payson] = { :layout => :application }
+
+By default :merb_slice_payson is used. If you need to override
+stylesheets or javascripts, just specify your own files in your layout
+instead/in addition to the ones supplied (if any) in 
+host-app/public/slices/merb_slice_payson.
+
+In any case don't edit those files directly as they may be clobbered any time
+rake merb_slice_payson:install is run.
