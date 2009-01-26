@@ -52,9 +52,6 @@ if defined?(Merb::Plugins)
     # @note prefix your named routes with :merb_slice_payson_
     #   to avoid potential conflicts with global named routes.
     def self.setup_router(scope)
-      # the slice is mounted at /merb_slice_payson - note that it comes before default_routes
-      scope.match('/').to(:controller => 'main', :action => 'index').name(:home)
-      # enable slice-level default routes by default
     end
     
   end
