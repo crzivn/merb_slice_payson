@@ -15,15 +15,15 @@ if defined?(Merb::Plugins)
   # Configuration options:
   # :layout - the layout to use; defaults to :merb_slice_payson
   # :mirror - which path component types to use on copy operations; defaults to all
-  Merb::Slices::config[:merb_slice_payson][:layout] ||= :merb_slice_payson
+  Merb::Slices::config[:merb_slice_payson][:layout] ||= false
   
   # All Slice code is expected to be namespaced inside a module
   module MerbSlicePayson
     
     # Slice metadata
-    self.description = "MerbSlicePayson is a chunky Merb slice!"
+    self.description = "Merb slice for interfacing with the Payson payment processing API"
     self.version = "0.0.1"
-    self.author = "Engine Yard"
+    self.author = "Ivan Navarrete"
     
     # Stub classes loaded hook - runs before LoadClasses BootLoader
     # right after a slice's classes have been loaded internally.
@@ -52,12 +52,9 @@ if defined?(Merb::Plugins)
     # @note prefix your named routes with :merb_slice_payson_
     #   to avoid potential conflicts with global named routes.
     def self.setup_router(scope)
-      # example of a named route
-      scope.match('/index(.:format)').to(:controller => 'main', :action => 'index').name(:index)
       # the slice is mounted at /merb_slice_payson - note that it comes before default_routes
       scope.match('/').to(:controller => 'main', :action => 'index').name(:home)
       # enable slice-level default routes by default
-      scope.default_routes
     end
     
   end
