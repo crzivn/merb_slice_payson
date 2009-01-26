@@ -52,6 +52,7 @@ if defined?(Merb::Plugins)
     # @note prefix your named routes with :merb_slice_payson_
     #   to avoid potential conflicts with global named routes.
     def self.setup_router(scope)
+      scope.match('/payment', :method => :post).to(:controller => 'payments', :action => 'create').name(:payment)
     end
     
   end

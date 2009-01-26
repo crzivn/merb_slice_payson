@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  </head>
+
+  <body onload="document.getElementById('payson_form').submit()">
+    <%= form(:action => "https://www.payson.se/testagent/default.aspx", :id => 'payson_form') do %>
+      <%= hidden_field :SellerEmail,
+                       :id => :seller_email %>
+
+      <%= hidden_field :BuyerEmail,
+                       :id => :buyer_email %>
+
+      <%= hidden_field :BuyerFirstName,
+                       :id => :buyer_first_name %>
+
+      <%= hidden_field :BuyerLastName,
+                       :id => :buyer_last_name %>
+
+      <%= hidden_field :Description,
+                       :id => :description %>
+
+      <%= hidden_field :Cost,
+                       :id => :cost %>
+
+      <%= hidden_field :ExtraCost,
+                       :id => :extra_cost %>
+
+      <%= hidden_field :RefNr,
+                       :id => :ref_nr %>
+
+      <%= hidden_field :OkUrl,
+                       :id => :ok_url %>
+
+      <%= hidden_field :AgentId,
+                       :id => :agent_id %>
+
+      <%= hidden_field :GuaranteeOffered,
+                       :id => :guarantee_offered %>
+
+      <%= hidden_field :MD5,
+                       :id => :md5 %>
+
+      <%= hidden_field :CustomReceipt,
+                       :id => :custom_recept %>
+
+      <%= hidden_field :PaymentMethod,
+                       :id => :payment_method %>
+    <% end =%>
+  </body>
+</html>
